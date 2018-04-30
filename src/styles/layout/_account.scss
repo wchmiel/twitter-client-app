@@ -1,0 +1,56 @@
+
+.sz-account-flex-cont {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: $sidebar-cont-xs-offset;
+  height: 100vh;
+  @media all and (min-width: $SM_RES) {
+    right: 0px;
+  }
+  &.sz-account-flex-cont-full {
+    @media all and (min-width: $SM_RES) {
+      right: 0px;
+      animation-name: flexcont_full;
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+      animation-duration: 600ms;
+      animation-fill-mode: forwards;
+    }
+  }
+  &.sz-account-flex-cont-tight {
+    @media all and (min-width: $SM_RES) {
+      right: $sidebar-cont-md-width;
+      animation-name: flexcont_tight;
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+      animation-duration: 600ms;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.sz-account-cont {
+  background-color: $sidebar-main-bg-color;
+  border-radius: 3px;
+  padding: 1.7rem 1.7rem;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  @media all and (min-width: $SM_RES) {
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+
+@keyframes flexcont_full {
+  from { right: $sidebar-cont-md-width }
+  to { right: 0px + $sidebar-cont-md-offset }
+}
+
+@keyframes flexcont_tight {
+  from { right: 0px + $sidebar-cont-xs-offset }
+  to { right: $sidebar-cont-md-width }
+}

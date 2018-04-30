@@ -1,0 +1,28 @@
+
+// --------------------------------------------------------------
+// FORMS
+// --------------------------------------------------------------
+
+// styles for szach-mat form wrapper
+.sz-form-wrap {
+  background-color: $sidebar-main-bg-color;
+  border-radius: 3px;
+  padding: 1.7rem 1.7rem;
+  margin-top: 1.7rem;
+}
+
+// styles for invalid form text
+.sz-invalid-form-text {
+  margin-top: 0.15rem;
+  color: $form-invalid-text-color;
+}
+
+// styles for invalid form input
+input.ng-invalid.ng-touched {
+  background-color: $form-invalid-background-color;
+  &:focus {
+    border-color: $form-invalid-background-color * 1.5;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "consumerKey": "rddZzwLVJB7Ca4m9WPhjXoE5b",
+  "consumerSecret": "0tOsN3Wa6scUDYCBdjl8cGfaS5FY8PJC0JKGBGfyacdWPvbaWM",
+  "accessToken": "756759456831115264-9z9fjt2aYEL1TRpgxhk1hpWYNmGNmtN",
+  "accessTokenSecret": "jIC8ZMpnDg7HVoVTuarW15MQggGRRWlj580k6mVU7t9rF",
+  "callBackUrl": "http://localhost:3000/twitter/return"
+}
