@@ -2,20 +2,25 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IndexComponent } from './index/index.component';
+import { AuthGuard } from './helpers/auth-guard.service';
+import { NotAuthGuard } from './helpers/not-auth-guard.service';
+import { SigninComponent } from './signin/signin.component';
+import { AccountComponent } from './account/account.component';
 
 const appRoutes: Routes = [
   // { path: '', canActivate: [NotAuthGuard], component: HomeComponent },
-  { path: '', component: IndexComponent },
+  { path: '', canActivate: [AuthGuard], component: AccountComponent },
+  { path: 'signin', canActivate: [NotAuthGuard], component: SigninComponent },
   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
-  // providers: [
-  //   NotAuthGuard
-  // ]
+  exports: [RouterModule],
+  providers: [
+    AuthGuard,
+    NotAuthGuard
+  ]
 })
 
 export class AppRoutingModule {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from './helpers/http.service';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     console.log('ok');
+    // this.httpService.testHttp();
   }
 
 }

@@ -3,19 +3,21 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
 
-import { HttpService } from './http/http.service';
+import { HttpService } from './helpers/http.service';
+import { AccountComponent } from './account/account.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    AccountComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,10 @@ import { HttpService } from './http/http.service';
     AppRoutingModule, // the main routing module
     NgbModule.forRoot()
   ],
-  providers: [HttpService],
+  providers: [
+    HttpService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

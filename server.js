@@ -160,12 +160,16 @@ app.get('/user/show', authenticate, (req, res) => {
   });
 });
 
+app.get('/test', authenticate, (req, res) => {
+  console.log('jestem tu');
+  res.json('jest polaczenie');
+});
+
 app.get('/*', (req, res, next) => {
   console.log('tutaj');
   res.render('index.html');
   // res.sendFile(path.normalize(path.join(__dirname + '/../client/dist/index.html')));
 });
-
 
 app.listen(3000, () => {
   console.log('Twitter client app listening on port 3000');
