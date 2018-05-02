@@ -4,18 +4,18 @@
 
   </div>
   <div class="row justify-content-md-center">
-      <div class="col-lg-4 col-md-6 sz-form-wrap">
+      <!-- <div class="col-lg-4 col-md-6 sz-form-wrap">
         <form [formGroup]="signinForm">
           <div class="form-group">
             <label for="email" class="h5">Email:</label>
             <input type="email" class="form-control" id="email" formControlName="email" ngModel>
             <p class="help-block sz-invalid-form-text" *ngIf="!signinForm.get('email').valid && signinForm.get('email').touched">
-              <!-- message for empty email -->
+
               <span *ngIf="signinForm.get('email').errors['required']">
                 This field is required.
               </span>
 
-              <!-- message for invalid email -->
+
               <span *ngIf="signinForm.get('email').errors['email'] && signinForm.get('email').value">
                 Must use a valid email.
               </span>
@@ -33,6 +33,7 @@
             <span class="sz-btn-spinner"></span>
           </button>
         </form>
-      </div>
+      </div> -->
+      <a href="/twitter/login" class="btn btn-primary"><span class="fa fa-facebook"></span> Login with Facebook</a>
   </div>
 </div>

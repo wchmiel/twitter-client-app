@@ -41,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Twitter credentials
+/data/twitter-config.js
+/data/config.js
