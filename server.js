@@ -123,7 +123,7 @@ app.use('/auth/twitter/callback', function(req, res) {
       const authenticate_data = qs.parse(body);
       saveUser(authenticate_data).then((savedUser) => {
         // token is send to client and will be stored in local/session storage
-        res.header('x-auth', savedUser.token).redirect('/');
+        res.header('Set-Cookie', 'x-auth=' + savedUser.token).render('index.html');
       }).catch((err) => {
         console.log(err);
         res.status(400).send();
@@ -153,16 +153,20 @@ app.get('/add/tweet', authenticate, (req, res) => {
 app.get('/user/show', authenticate, (req, res) => {
   getUserDataFromTwitter(req.user).then((twUser) => {
     // res.header('x-auth', req.token).json(twUser);
-    res.json(twUser);
+    res.send({
+      authorized: true,
+      user: twUser
+    });
   }).catch((err) => {
     console.log(err);
     res.status(400).send();
   });
 });
 
-app.get('/test', authenticate, (req, res) => {
-  console.log('jestem tu');
-  res.json('jest polaczenie');
+app.get('/check/authentication', authenticate, (req, res) => {
+  res.send({
+    authorized: true,
+  });
 });
 
 app.get('/*', (req, res, next) => {

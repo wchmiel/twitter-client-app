@@ -9,6 +9,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
 import { AppComponent } from './app.component';
 
 import { HttpService } from './helpers/http.service';
+import { AuthService } from './helpers/auth.service';
 import { AccountComponent } from './account/account.component';
 import { SigninComponent } from './signin/signin.component';
 
@@ -28,6 +29,7 @@ import { SigninComponent } from './signin/signin.component';
   ],
   providers: [
     HttpService,
+    AuthService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

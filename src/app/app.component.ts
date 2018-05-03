@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './helpers/http.service';
+import { AuthService } from './helpers/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +8,11 @@ import { HttpService } from './helpers/http.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private httpService: HttpService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    console.log('ok');
-    // this.httpService.testHttp();
+    console.log('Init app component');
+    this.authService.saveUserToken();
   }
 
 }

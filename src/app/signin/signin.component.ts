@@ -12,4 +12,9 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
+  login() {
+    console.log('open!');
+    // window.open('http:127.0.0.1:3000/twitter/login');
+  }
+
 }

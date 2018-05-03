@@ -26,7 +26,7 @@ export class NotAuthGuard implements CanActivate {
       //     }
       //   );
       // });
-      return this.httpService.isUserAuthenticated()
+      return this.httpService.getUserData()
         .map((data) => {
           if (data.authorized) {
             console.log(data);

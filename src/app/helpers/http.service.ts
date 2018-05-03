@@ -20,23 +20,13 @@ export class HttpService {
   }
 
   public isUserAuthenticated() {
-    // return new Promise<boolean>((resolve, reject) => {
-    //   const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    //   this.http.get<any>('http://127.0.0.1:3000/test', {headers: headers}).subscribe((data) => {
-    //     if (data) {
-    //       console.log(data);
-    //       resolve(true);
-    //     } else {
-    //       console.log(data);
-    //       reject(false);
-    //     }
-    //   }).catch();
-    // });
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.get<any>('http://127.0.0.1:3000/test', {headers: headers});
-      // .catch((error: HttpErrorResponse) => {
-      //   return Observable.throw(error.message || 'Server Error');
-      // });
+    return this.http.get<any>('http://127.0.0.1:3000/check/authentication', {headers: headers});
+  }
+
+  public getUserData() {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get<any>('http://127.0.0.1:3000/user/show', {headers: headers});
   }
 
 }
