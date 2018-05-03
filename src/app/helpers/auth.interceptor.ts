@@ -15,20 +15,20 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const token = this.authService.getToken(); // getting token from cookie
     let request = null;
-    console.log('------------------------');
-    console.log('token: ' + token);
-    console.log('------------------------');
+    // console.log('------------------------');
+    // console.log('token: ' + token);
+    // console.log('------------------------');
 
     if (token) {
       request = req.clone({
         headers: req.headers.set('x-auth', token)
       });
-      console.log('copiedReq:');
-      console.log(request);
+      // console.log('copiedReq:');
+      // console.log(request);
     } else {
       request = req;
-      console.log('request:');
-      console.log(request);
+      // console.log('request:');
+      // console.log(request);
     }
     return next.handle(request)
       .map(this.handleResponse)
