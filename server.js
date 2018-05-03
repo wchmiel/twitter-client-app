@@ -29,7 +29,7 @@ mongoose.connect("mongodb://localhost/tw_app_test");
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Authorization, Origin, Content-Type, X-Auth-Token');
+  res.header('Access-Control-Allow-Headers', 'Authorization, Origin, Content-Type, X-Auth-Token, x-auth');
   res.header('cache-control', 'no-cache');
   next();
 });
