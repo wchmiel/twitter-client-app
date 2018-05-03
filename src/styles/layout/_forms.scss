@@ -3,8 +3,8 @@
 // FORMS
 // --------------------------------------------------------------
 
-// styles for szach-mat form wrapper
-.sz-form-wrap {
+// styles for form wrapper
+.tw-form-wrap {
   background-color: $sidebar-main-bg-color;
   border-radius: 3px;
   padding: 1.7rem 1.7rem;
@@ -12,7 +12,7 @@
 }
 
 // styles for invalid form text
-.sz-invalid-form-text {
+.tw-invalid-form-text {
   margin-top: 0.15rem;
   color: $form-invalid-text-color;
 }

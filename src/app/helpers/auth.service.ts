@@ -1,6 +1,17 @@
 export class AuthService {
 
   private jwtName = 'tw_auth';
+  private userData = null;
+  public userStored = false;
+
+  public setUserData(user) {
+    this.userData = user;
+    this.userStored = true;
+  }
+
+  public getUserData() {
+    return this.userData;
+  }
 
   public saveUserToken() {
     const cookie_jwt = this.getJwtFromCookie();

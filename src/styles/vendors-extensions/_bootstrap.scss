@@ -34,3 +34,14 @@
     cursor: not-allowed;
   }
 }
+
+.btn-twitter {
+  color: #fff;
+  background-color: #1DA1F2;
+  border-color: #0A95EB;
+  &:hover {
+    color: #fff;
+    background-color: #0A95EB;
+    border-color: #0062cc;
+  }
+}

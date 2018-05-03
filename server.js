@@ -18,6 +18,9 @@ const express = require('express'),
 const saveUser = require('./helpers/db/save-user'),
       addTweet = require('./helpers/twitter-api/add-tweet'),
       getUserDataFromTwitter = require('./helpers/twitter-api/get-user'),
+      getFollowersList = require('./helpers/twitter-api/get-followers-list'),
+      getFriendsList = require('./helpers/twitter-api/get-friends-list'),
+      getUserTimeline = require('./helpers/twitter-api/get-user-timeline'),
       TwitterConfig = require('./data/twitter-config'),
       authenticate = require('./helpers/middlewares/authenticate'),
       User = require('./models/users');
@@ -151,16 +154,30 @@ app.get('/add/tweet', authenticate, (req, res) => {
 });
 
 app.get('/user/show', authenticate, (req, res) => {
-  getUserDataFromTwitter(req.user).then((twUser) => {
-    // res.header('x-auth', req.token).json(twUser);
-    res.send({
-      authorized: true,
-      user: twUser
+  Promise.all([
+    getUserDataFromTwitter(req.user),
+    getFollowersList(req.user, 5),
+    getFriendsList(req.user),
+    getUserTimeline(req.user, 10)])
+    .then((data) => {
+      console.log(data);
+      res.send({
+        user: data[0],
+        followers: data[1],
+        friends: data[2],
+        tweets: data[3]
+      });
+      console.log({
+        user: data[0],
+        followers: data[1],
+        friends: data[2],
+        tweets: data[3]
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send(err);
     });
-  }).catch((err) => {
-    console.log(err);
-    res.status(400).send();
-  });
 });
 
 app.get('/check/authentication', authenticate, (req, res) => {

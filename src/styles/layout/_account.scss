@@ -1,5 +1,5 @@
 
-.sz-account-flex-cont {
+.tw-account-flex-cont {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -8,7 +8,7 @@
   @media all and (min-width: $SM_RES) {
     right: 0px;
   }
-  &.sz-account-flex-cont-full {
+  &.tw-account-flex-cont-full {
     @media all and (min-width: $SM_RES) {
       right: 0px;
       animation-name: flexcont_full;
@@ -17,7 +17,7 @@
       animation-fill-mode: forwards;
     }
   }
-  &.sz-account-flex-cont-tight {
+  &.tw-account-flex-cont-tight {
     @media all and (min-width: $SM_RES) {
       right: $sidebar-cont-md-width;
       animation-name: flexcont_tight;
@@ -28,7 +28,7 @@
   }
 }
 
-.sz-account-cont {
+.tw-account-cont {
   background-color: $sidebar-main-bg-color;
   border-radius: 3px;
   padding: 1.7rem 1.7rem;

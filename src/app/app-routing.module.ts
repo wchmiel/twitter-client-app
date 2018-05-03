@@ -8,8 +8,9 @@ import { SigninComponent } from './signin/signin.component';
 import { AccountComponent } from './account/account.component';
 
 const appRoutes: Routes = [
-  // { path: '', canActivate: [NotAuthGuard], component: HomeComponent },
   { path: '', canActivate: [AuthGuard], component: AccountComponent },
+  // { path: '', component: AccountComponent },
+  // { path: 'signin', component: SigninComponent },
   { path: 'signin', canActivate: [NotAuthGuard], component: SigninComponent },
   { path: '**', redirectTo: '' }
 ];

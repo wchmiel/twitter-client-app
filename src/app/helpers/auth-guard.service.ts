@@ -2,13 +2,14 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
+import { AuthService } from './auth.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private httpService: HttpService, private router: Router) {}
+  constructor(private httpService: HttpService, private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean> | Promise<boolean> | boolean {
@@ -33,7 +34,7 @@ export class AuthGuard implements CanActivate {
       //     }
       //   );
       // });
-      return this.httpService.getUserData()
+      return this.httpService.isUserAuthenticated()
         .map((data) => {
           if (data.authorized) {
             console.log(data);

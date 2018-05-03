@@ -10,8 +10,8 @@
   './vendors/bootstrap';
   // './vendors/ng-material';
 
-// $fa-font-path: "~font-awesome/fonts";
-// @import '~font-awesome/scss/font-awesome';
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
 
 // 3. Vendors extensions
 @import
@@ -29,12 +29,9 @@
 // 5. Components
 @import
   './components/avatar',
+  './components/panel',
   './components/hamburger';
 
-// 6. Page-specific styles
-// @import
-//   'pages/home';
-
-// 7. Themes
+// 6. Themes
 @import
   './themes/default';

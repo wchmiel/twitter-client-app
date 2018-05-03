@@ -1,0 +1,33 @@
+@import '~styles/abstracts/mixins';
+
+.tw-panel {
+  @include centerer(true, false);
+  height: 350px;
+  width: 300px;
+  margin-top: 100px;
+
+  h1 {
+    font-size: 26px;
+    line-height: 34px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .btn-twitter {
+    line-height: 26px;
+    @include centerer(true, false);
+    bottom: 50px;
+    .fa-twitter {
+      padding-right: 5px;
+      font-size: 26px;
+      line-height: 26px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
