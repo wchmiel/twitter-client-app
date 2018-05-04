@@ -143,14 +143,17 @@ app.use('/auth/twitter/callback', function(req, res) {
 
 
 
-app.get('/add/tweet', authenticate, (req, res) => {
-  addTweet(req.user).then((response) => {
-    // res.header('x-auth', req.token).send(response);
-    res.send(response);
-  }).catch((err) => {
-    console.log(err);
-    res.status(400).send();
-  });
+app.post('/add/tweet', authenticate, (req, res) => {
+  // addTweet(req.user).then((response) => {
+  //   // res.header('x-auth', req.token).send(response);
+  //   res.send(response);
+  // }).catch((err) => {
+  //   console.log(err);
+  //   res.status(400).send();
+  // });
+  const status = req.body;
+  console.log(req.body);
+  res.send('okokokokokoko dodano!');
 });
 
 app.get('/user/show', authenticate, (req, res) => {

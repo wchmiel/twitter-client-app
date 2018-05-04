@@ -17,7 +17,7 @@
               Twitter Client App
             </div>
           </div>
-          <a href="/twitter/login" class="btn btn-twitter">
+          <a class="btn btn-twitter" (click)="onOpenTweetModal()">
             Tweetnij
           </a>
         </div>
@@ -37,6 +37,11 @@
               <p>
                 <a href="https://twitter.com/{{ (userData|async)?.user.screen_name }}" target="_blank">
                   @{{ (userData|async)?.user.screen_name }}
+                </a>
+              </p>
+              <p>
+                <a (click)="logout()" target="_blank" class="tw-link">
+                <i class="fa fa-sign-out"></i> Wyloguj
                 </a>
               </p>
             </aside>
@@ -143,4 +148,28 @@
       </div>
     </div>
   </footer>
+</div>
+
+<div class="tw-modal-bg" (click)="onHideModal()" #modalBg></div>
+<div class="tw-tweet-modal" #modalCnt>
+  <div class="container">
+    <div class="tw-panel">
+      <div class="tweet-modal-header">
+        <span>
+          Tweetnij coś
+        </span>
+      </div>
+      <div class="tweet-modal-cnt">
+        <textarea #textarea name="name" rows="7" cols="40" placeholder="Co się dzieje?"></textarea>
+      </div>
+      <div class="tweet-modal-footer">
+        <a class="btn" (click)="onHideModal()">
+          Anuluj
+        </a>
+        <a class="btn btn-twitter" (click)="onAddTweet()">
+          Tweetnij
+        </a>
+      </div>
+    </div>
+  <div>
 </div>

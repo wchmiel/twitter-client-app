@@ -12,16 +12,19 @@ export class AccountComponent implements OnInit {
 
   @ViewChild('spinner') spinner: ElementRef;
   @ViewChild('container') container: ElementRef;
+  @ViewChild('modalBg') modalBg: ElementRef;
+  @ViewChild('modalCnt') modalCnt: ElementRef;
+  @ViewChild('textarea') textarea: ElementRef;
 
   public user2;
-  // public userData;
-  public userData = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      this.hideSpinner();
-      this.showContent();
-      resolve(this.userMock);
-    }, 200);
-  });
+  public userData;
+  // public userData = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     this.hideSpinner();
+  //     this.showContent();
+  //     resolve(this.userMock);
+  //   }, 200);
+  // });
   public userMock = {
     followers: {
       users: [
@@ -112,49 +115,28 @@ export class AccountComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    // if (this.authService.userStored) {
-    //   this.user2 = this.authService.getUserData;
-    //   console.log('user data from service!');
-    // } else {
-    //   this.httpService.getUserData().subscribe((user) => {
-    //     this.user2 = user;
-    //     this.authService.setUserData(user);
-    //
-    //     console.log('$$$$$$$$$$$$$');
-    //     console.log(this.user2);
-    //     console.log('$$$$$$$$$$$$$');
-    //   });
-    //   console.log('user data from server!');
-    // }
-
-    // HERE
-    // if (this.authService.userStored) {
-    //   console.log('user data from service!');
-    //   this.userData = new Promise((resolve, reject) => {
-    //     const data = this.authService.getUserData;
-    //     this.hideSpinner();
-    //     this.showContent();
-    //     resolve(data);
-    //   });
-    // } else {
-    //   this.userData = new Promise((resolve, reject) => {
-    //     this.httpService.getUserData().subscribe((data) => {
-    //       this.authService.setUserData(data);
-    //       this.hideSpinner();
-    //       this.showContent();
-    //       resolve(data);
-    //       console.log('$$$$$$$$$$$$$');
-    //       console.log(data);
-    //       console.log('$$$$$$$$$$$$$');
-    //       console.log('user data from server!');
-    //     });
-    //   });
-    // }
-
-
-    // setTimeout(() => {
-    //   this.userData = this.userMock;
-    // }, 2000);
+    if (this.authService.userStored) {
+      console.log('user data from service!');
+      this.userData = new Promise((resolve, reject) => {
+        const data = this.authService.getUserData;
+        this.hideSpinner();
+        this.showContent();
+        resolve(data);
+      });
+    } else {
+      this.userData = new Promise((resolve, reject) => {
+        this.httpService.getUserData().subscribe((data) => {
+          this.authService.setUserData(data);
+          this.hideSpinner();
+          this.showContent();
+          resolve(data);
+          console.log('$$$$$$$$$$$$$');
+          console.log(data);
+          console.log('$$$$$$$$$$$$$');
+          console.log('user data from server!');
+        });
+      });
+    }
   }
 
   private hideSpinner() {
@@ -163,6 +145,37 @@ export class AccountComponent implements OnInit {
 
   private showContent() {
     this.renderer.addClass(this.container.nativeElement, 'ready');
+  }
+
+  public logout() {
+    this.authService.logout();
+  }
+
+  public onOpenTweetModal() {
+    this.toggleModal('open');
+  }
+
+  public onHideModal() {
+    this.toggleModal('close');
+    this.textarea.nativeElement.value = '';
+  }
+
+  public onAddTweet() {
+    const text = this.textarea.nativeElement.value;
+    console.log(text);
+    this.httpService.addTweet(text).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  public toggleModal(action: string) {
+    if (action === 'open') {
+      this.renderer.addClass(this.modalCnt.nativeElement, 'open');
+      this.renderer.addClass(this.modalBg.nativeElement, 'open');
+    } else {
+      this.renderer.removeClass(this.modalCnt.nativeElement, 'open');
+      this.renderer.removeClass(this.modalBg.nativeElement, 'open');
+    }
   }
 
 }

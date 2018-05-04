@@ -1,8 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Injectable()
 export class AuthService {
 
   private jwtName = 'tw_auth';
   private userData = null;
   public userStored = false;
+
+  constructor(private router: Router) {}
 
   public setUserData(user) {
     this.userData = user;
@@ -37,6 +43,15 @@ export class AuthService {
       localStorage.removeItem(this.jwtName);
       return true;
     } catch (e) {
+      return false;
+    }
+  }
+
+  public logout() {
+    const removeToken = this.removeToken();
+    if (removeToken) {
+      this.router.navigate(['/signin']);
+    } else {
       return false;
     }
   }

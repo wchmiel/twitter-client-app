@@ -29,4 +29,9 @@ export class HttpService {
     return this.http.get<any>('http://127.0.0.1:3000/user/show', {headers: headers});
   }
 
+  public addTweet(text: string) {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post<any>('http://127.0.0.1:3000/add/tweet', text , {headers: headers});
+  }
+
 }
