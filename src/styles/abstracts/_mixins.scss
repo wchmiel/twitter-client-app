@@ -12,3 +12,14 @@
     transform: translate(0, -50%);
   }
 }
+
+@mixin default-link {
+  text-decoration: none;
+  -webkit-text-decoration: none;
+  -moz-text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    -webkit-text-decoration: none;
+    -moz-text-decoration: none;
+  }
+}

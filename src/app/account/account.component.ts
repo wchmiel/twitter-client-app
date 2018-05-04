@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../helpers/http.service';
 import { AuthService } from '../helpers/auth.service';
@@ -10,17 +10,27 @@ import { AuthService } from '../helpers/auth.service';
 })
 export class AccountComponent implements OnInit {
 
-  public user;
+  @ViewChild('spinner') spinner: ElementRef;
+  @ViewChild('container') container: ElementRef;
+
+  public user2;
+  public userData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      this.hideSpinner();
+      this.showContent();
+      resolve(this.userMock);
+    }, 200);
+  });
   public userMock = {
     followers: {
       users: [
         {
-          profile_image_url: 'http://pbs.twimg.com/profile_images/378800000341208645/30ed0453138f0bffa3e7de986556c3c2.jpeg',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/378800000341208645/30ed0453138f0bffa3e7de986556c3c2_normal.jpeg',
           name: 'Michał Chmiel',
           screen_name: 'mochollllll'
         },
         {
-          profile_image_url: 'http://pbs.twimg.com/profile_images/992105692214513664/7TvaKnwn.jpg',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/992105692214513664/7TvaKnwn_normal.jpg',
           name: 'Wojciech Chmiel',
           screen_name: 'wojoooooo'
         }
@@ -71,6 +81,7 @@ export class AccountComponent implements OnInit {
   };
 
   constructor(private router: Router,
+    private renderer: Renderer2,
     private activatedRoute: ActivatedRoute,
     private httpService: HttpService,
     private authService: AuthService) { }
@@ -81,19 +92,32 @@ export class AccountComponent implements OnInit {
     }
 
     if (this.authService.userStored) {
-      this.user = this.authService.getUserData;
+      this.user2 = this.authService.getUserData;
       console.log('user data from service!');
     } else {
       this.httpService.getUserData().subscribe((user) => {
-        this.user = user;
+        this.user2 = user;
         this.authService.setUserData(user);
 
         console.log('$$$$$$$$$$$$$');
-        console.log(this.user);
+        console.log(this.user2);
         console.log('$$$$$$$$$$$$$');
       });
       console.log('user data from server!');
     }
+
+
+    // setTimeout(() => {
+    //   this.userData = this.userMock;
+    // }, 2000);
+  }
+
+  private hideSpinner() {
+    this.renderer.addClass(this.spinner.nativeElement, 'hide');
+  }
+
+  private showContent() {
+    this.renderer.addClass(this.container.nativeElement, 'ready');
   }
 
 }

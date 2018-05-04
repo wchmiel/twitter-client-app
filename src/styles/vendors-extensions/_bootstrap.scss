@@ -1,3 +1,4 @@
+@import '~styles/abstracts/variables';
 
 // forms
 .form-group {
@@ -37,7 +38,7 @@
 
 .btn-twitter {
   color: #fff;
-  background-color: #1DA1F2;
+  background-color: $twitter;
   border-color: #0A95EB;
   &:hover {
     color: #fff;

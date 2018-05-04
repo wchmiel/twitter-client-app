@@ -1,0 +1,65 @@
+@import '~styles/abstracts/variables';
+@import '~styles/abstracts/mixins';
+
+.tw-spinner {
+  @include centerer(true, true);
+  margin: 5px;
+}
+
+.tw-account-cnt {
+  opacity: 0;
+  transition: 0.3s;
+
+  &.ready {
+    opacity: 1;
+  }
+
+  .tw-panel {
+    text-align: left;
+
+    &.tw-user-panel {
+      h1 {
+        font-size: 1.4rem;
+        margin-top: 20px;
+      }
+      p {
+        a {
+          @include default-link;
+          font-size: 1.1rem;
+          color: $text-darkgrey-color;
+          transition: 0.3s;
+          &:hover {
+            color: $text-darkgrey-color * 1.2;
+          }
+        }
+      }
+    }
+
+    &.tw-followers-panel, &.tw-friends-panel {
+      div {
+        border-bottom: 1px solid $text-devider-color;
+        padding: 10px 0px;
+        display: flex;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        p {
+          display: inline-block;
+          margin-bottom: 0px;
+          padding-left: 12px;
+          a {
+            @include default-link;
+            font-size: 0.9rem;
+            color: $text-darkgrey-color;
+            transition: 0.3s;
+            &:hover {
+              color: $text-darkgrey-color * 1.2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
