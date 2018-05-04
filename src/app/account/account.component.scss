@@ -18,6 +18,10 @@
     text-align: left;
 
     &.tw-user-panel {
+      text-align: center;
+      @media all and (min-width: $MD_RES) {
+        text-align: left;
+      }
       h1 {
         font-size: 1.4rem;
         margin-top: 20px;
@@ -36,6 +40,12 @@
     }
 
     &.tw-followers-panel, &.tw-friends-panel {
+      p {
+        text-align: center;
+        @media all and (min-width: $MD_RES) {
+          text-align: left;
+        }
+      }
       div {
         border-bottom: 1px solid $text-devider-color;
         padding: 10px 0px;
@@ -58,6 +68,112 @@
               color: $text-darkgrey-color * 1.2;
             }
           }
+        }
+
+        @media all and (max-width: $MD_RES) {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+
+    &.tw-tweets-panel {
+      .tweets-panel-header {
+        position: relative;
+        p {
+          display: inline-block;
+          margin-bottom: 0px;
+          padding-left: 7px;
+          margin-top: 5px;
+          font-size: 1rem;
+          line-height: 1.1rem;
+          a {
+            @include default-link;
+            font-size: 0.8rem;
+            color: $text-darkgrey-color;
+            transition: 0.3s;
+            &:hover {
+              color: $text-darkgrey-color * 1.2;
+            }
+          }
+        }
+        img {
+          position: relative;
+          top: -10px;
+        }
+        .fa-twitter {
+          font-size: 1.6rem;
+          position: absolute;
+          top: 10px;
+          right: 0px;
+          color: $twitter;
+        }
+      }
+
+      h2 {
+        font-size: 1rem;
+        padding: 10px 0px;
+      }
+
+      .tweets-panel-footer {
+        text-align: right;
+        span {
+          color: $text-darkgrey-color;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+.main-header {
+  padding: 5px 0px;
+  background-color: $panel-main-bg-color;
+  .header-panel {
+    .header-logo {
+      display: inline-block;
+      div:first-of-type {
+        font-size: 2rem;
+        line-height: 2.2rem;
+        color: #FF5A00;
+      }
+      div:last-of-type {
+        padding-top: 3px;
+      }
+    }
+
+    .btn-twitter {
+      float: right;
+      margin-top: 15px;
+    }
+  }
+}
+
+.main-footer {
+  margin-top: 30px;
+  padding: 10px 0px;
+  background-color: $panel-main-bg-color;
+
+  .footer-panel {
+    position: relative;
+    .footer-rights {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      color: $text-darkgrey-color;
+      font-size: 0.8rem;
+    }
+
+    p {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: $text-darkgrey-color;
+      a {
+        @include default-link;
+        color: $text-darkgrey-color;
+        transition: 0.3s;
+        &:hover {
+          color: $text-darkgrey-color * 1.2;
         }
       }
     }

@@ -14,6 +14,7 @@ export class AccountComponent implements OnInit {
   @ViewChild('container') container: ElementRef;
 
   public user2;
+  // public userData;
   public userData = new Promise((resolve, reject) => {
     setTimeout(() => {
       this.hideSpinner();
@@ -44,33 +45,53 @@ export class AccountComponent implements OnInit {
           screen_name: 'wojoooooo'
         },
         {
-          profile_image_url: 'http://pbs.twimg.com/profile_images/556495456805453826/wKEOCDN0.png',
-          name: 'Andrzej Duda',
-          screen_name: 'dudaaaaaaaa111'
-        },
-        {
           profile_image_url: 'http://pbs.twimg.com/profile_images/990605878993793024/7uuCR4hP.jpg',
           name: 'Donald Tusk',
           screen_name: 'tusekk999'
+        },
+        {
+          profile_image_url: 'http://pbs.twimg.com/profile_images/556495456805453826/wKEOCDN0.png',
+          name: 'Andrzej Duda',
+          screen_name: 'dudaaaaaaaa111'
         }
       ]
     },
     tweets: [
       {
         created_at: 'Wed May 02 06:28:00 +0000 2018',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non dolor gravida, viverra risus in, vehicula mauris. Donec egestas non ex vel ultricies. Vestibulum vestibulum vulputate velit id sodales. Ut quis turpis at magna consectetur scelerisque non ut metus. Sed sollicitudin libero massa, ut tincidunt ante vulputate sit amet.'
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non dolor gravida, viverra risus in, vehicula mauris. Donec egestas non ex vel ultricies.',
+        user: {
+          profile_image_url: 'http://pbs.twimg.com/profile_images/992105692214513664/7TvaKnwn_normal.jpg',
+          name: 'Wojciech Chmiel',
+          screen_name: 'wojoooooo'
+        }
       },
       {
         created_at: 'Wed May 02 06:22:57 +0000 2018',
-        text: 'Vivamus malesuada ante at sapien aliquet, in cursus neque tincidunt. Mauris vel sem consectetur, dictum lectus et, ultrices nisi. Suspendisse quis elit sed velit feugiat vestibulum vitae a lorem.'
+        text: 'Vivamus malesuada ante at sapien aliquet, in cursus neque tincidunt. Mauris vel sem consectetur, dictum lectus et, ultrices nisi. Suspendisse quis elit sed velit feugiat vestibulum vitae a lorem.',
+        user: {
+          profile_image_url: 'http://pbs.twimg.com/profile_images/990605878993793024/7uuCR4hP.jpg',
+          name: 'Donald Tusk',
+          screen_name: 'tusekk999'
+        }
       },
       {
         created_at: 'Sat Apr 28 07:58:17 +0000 2018',
-        text: 'Maecenas mollis quam non dictum efficitur. Proin augue mi, sagittis a arcu eu, laoreet feugiat diam. Ut urna sem, bibendum quis orci sed, laoreet blandit dui.'
+        text: 'Maecenas mollis quam non dictum efficitur. Proin augue mi, sagittis a arcu eu, laoreet feugiat diam. Ut urna sem, bibendum quis orci sed, laoreet blandit dui.',
+        user: {
+          profile_image_url: 'http://pbs.twimg.com/profile_images/556495456805453826/wKEOCDN0.png',
+          name: 'Andrzej Duda',
+          screen_name: 'dudaaaaaaaa111'
+        }
       },
       {
         created_at: 'Wed Apr 25 17:46:43 +0000 2018',
-        text: 'Sed pulvinar, est vel congue mollis, mi enim fermentum orci, in hendrerit massa leo et metus.'
+        text: 'Sed pulvinar, est vel congue mollis, mi enim fermentum orci, in hendrerit massa leo et metus.',
+        user: {
+          profile_image_url: 'http://pbs.twimg.com/profile_images/556495456805453826/wKEOCDN0.png',
+          name: 'Andrzej Duda',
+          screen_name: 'dudaaaaaaaa111'
+        }
       }
     ],
     user: {
@@ -91,20 +112,44 @@ export class AccountComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    if (this.authService.userStored) {
-      this.user2 = this.authService.getUserData;
-      console.log('user data from service!');
-    } else {
-      this.httpService.getUserData().subscribe((user) => {
-        this.user2 = user;
-        this.authService.setUserData(user);
+    // if (this.authService.userStored) {
+    //   this.user2 = this.authService.getUserData;
+    //   console.log('user data from service!');
+    // } else {
+    //   this.httpService.getUserData().subscribe((user) => {
+    //     this.user2 = user;
+    //     this.authService.setUserData(user);
+    //
+    //     console.log('$$$$$$$$$$$$$');
+    //     console.log(this.user2);
+    //     console.log('$$$$$$$$$$$$$');
+    //   });
+    //   console.log('user data from server!');
+    // }
 
-        console.log('$$$$$$$$$$$$$');
-        console.log(this.user2);
-        console.log('$$$$$$$$$$$$$');
-      });
-      console.log('user data from server!');
-    }
+    // HERE
+    // if (this.authService.userStored) {
+    //   console.log('user data from service!');
+    //   this.userData = new Promise((resolve, reject) => {
+    //     const data = this.authService.getUserData;
+    //     this.hideSpinner();
+    //     this.showContent();
+    //     resolve(data);
+    //   });
+    // } else {
+    //   this.userData = new Promise((resolve, reject) => {
+    //     this.httpService.getUserData().subscribe((data) => {
+    //       this.authService.setUserData(data);
+    //       this.hideSpinner();
+    //       this.showContent();
+    //       resolve(data);
+    //       console.log('$$$$$$$$$$$$$');
+    //       console.log(data);
+    //       console.log('$$$$$$$$$$$$$');
+    //       console.log('user data from server!');
+    //     });
+    //   });
+    // }
 
 
     // setTimeout(() => {

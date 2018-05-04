@@ -4,24 +4,45 @@
   <div class="bounce3"></div>
 </div>
 
-<main>
-  <article>
-    <div class="tw-account-cnt" #container>
+<div class="tw-account-cnt" #container>
+  <header>
+    <div class="main-header">
       <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="tw-panel tw-user-panel">
+        <div class="header-panel">
+          <div class="header-logo">
+            <div>
+              allegro
+            </div>
+            <div>
+              Twitter Client App
+            </div>
+          </div>
+          <a href="/twitter/login" class="btn btn-twitter">
+            Tweetnij
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="tw-panel tw-user-panel">
+            <aside>
               <img class="avatar avatar-bg" src="{{ (userData|async)?.user.profile_image_url }}" alt="USer photo">
               <h1>
                 {{ (userData|async)?.user.name }}
               </h1>
               <p>
-                <a href="https://twitter.com/{{ (userData|async)?.user.screen_name }}">
+                <a href="https://twitter.com/{{ (userData|async)?.user.screen_name }}" target="_blank">
                   @{{ (userData|async)?.user.screen_name }}
                 </a>
               </p>
-            </div>
-            <div class="tw-panel tw-followers-panel">
+            </aside>
+          </div>
+          <div class="tw-panel tw-followers-panel">
+            <aside>
               <p>
                 Obserwujący
               </p>
@@ -31,19 +52,46 @@
                     alt="{{ user.name }} photo">
                 <p>
                   {{ user.name }} <br>
-                  <a href="https://twitter.com/{{ user.screen_name }}">
+                  <a href="https://twitter.com/{{ user.screen_name }}" target="_blank">
                     @{{ user.screen_name }}
                   </a>
                 </p>
               </div>
-            </div>
+            </aside>
           </div>
-          <div class="col-lg-6">
-            <div class="tw-panel">
-              sdasdf
-            </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="tw-panel tw-tweets-panel" *ngFor="let tweet of (userData|async)?.tweets">
+            <section>
+              <header>
+                <div class="tweets-panel-header">
+                  <img class="avatar avatar-xs avatar-rounded"
+                      src="{{ tweet.user.profile_image_url }}"
+                      alt="{{ tweet.user.name }} photo">
+                  <p>
+                    {{ tweet.user.name }} <br>
+                    <a href="https://twitter.com/{{ tweet.user.screen_name }}" target="_blank">
+                      @{{ tweet.user.screen_name }}
+                    </a>
+                  </p>
+                  <i class="fa fa-twitter"></i>
+                </div>
+              </header>
+              <h2>
+                {{ tweet.text }}
+              </h2>
+              <footer>
+                <div class="tweets-panel-footer">
+                  <span>
+                    {{ tweet.created_at }}
+                  </span>
+                </div>
+              </footer>
+            </section>
           </div>
-          <div class="col">
+        </div>
+        <div class="col">
+          <aside>
             <div class="tw-panel tw-friends-panel">
               <p>
                 Obserwowani
@@ -54,15 +102,45 @@
                     alt="{{ user.name }} photo">
                 <p>
                   {{ user.name }} <br>
-                  <a href="https://twitter.com/{{ user.screen_name }}">
+                  <a href="https://twitter.com/{{ user.screen_name }}" target="_blank">
                     @{{ user.screen_name }}
                   </a>
                 </p>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>
   </article>
-</main>
+  <footer>
+    <div class="main-footer">
+      <div class="container">
+        <div class="footer-panel">
+          <div class="row">
+            <div class="col">
+              <p>
+                Created by
+                <a href="https://github.com/wchmiel" target="_blank">
+                  Wojciech Chmiel
+                </a>
+              </p>
+              <p>
+                Project:
+                <a href="https://github.com/wchmiel/twitter-client-app" target="_blank">
+                  github.com
+                </a>
+              </p>
+            </div>
+            <div class="col">
+              <span class="footer-rights">
+                All rights reserved <i class="fa fa-registered"></i> <br>
+                Allegro Summer e-Xperience Team
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
