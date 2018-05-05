@@ -1,0 +1,84 @@
+@import '~styles/abstracts/variables';
+
+$height: 50px;
+
+.tw-flash-messenger-cnt {
+  position: fixed;
+  bottom: -$height;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: $height;
+  padding: 0px 15px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  text-align: center;
+  line-height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #428925;
+  color: #fff;
+
+  span {
+    opacity: 0;
+    transition: 0.1s;
+  }
+
+  @media all and (min-width: $XS_RES) {
+    width: auto;
+    padding: 0px 20px;
+    // padding-bottom: 17px;
+  }
+
+  &.info-message {
+    background-color: $twitter;
+    color: #fff;
+  }
+
+  &.error-message {
+    background-color: #e33a33;
+    color: #fff;
+  }
+
+  &.success-message {
+    background-color: #428925;
+    color: #fff;
+  }
+
+  &.show {
+    animation: slide-in 0.1s ease-out;
+    animation-fill-mode: forwards;
+
+    span {
+      opacity: 1;
+    }
+  }
+
+  &.hide {
+    animation: slide-out 0.1s ease-in;
+    animation-fill-mode: forwards;
+
+    span {
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    bottom: -$height;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: -$height;
+  }
+}

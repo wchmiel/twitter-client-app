@@ -11,15 +11,18 @@ import { AppComponent } from './app.component';
 import { GlobalErrorHandler } from './helpers/error-handler.service';
 import { HttpService } from './helpers/http.service';
 import { AuthService } from './helpers/auth.service';
+import { FlashMessenger } from './flash-messenger/flash-messenger.service';
 import { AccountComponent } from './account/account.component';
 import { SigninComponent } from './signin/signin.component';
+import { FlashMessengerComponent } from './flash-messenger/flash-messenger.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
-    SigninComponent
+    SigninComponent,
+    FlashMessengerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { SigninComponent } from './signin/signin.component';
   providers: [
     HttpService,
     AuthService,
+    FlashMessenger,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: ErrorHandler, useClass: GlobalErrorHandler}
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../helpers/http.service';
 import { AuthService } from '../helpers/auth.service';
+import { FlashMessenger, FlashMessage } from '../flash-messenger/flash-messenger.service';
 
 @Component({
   selector: 'app-account',
@@ -106,6 +107,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private router: Router,
     private renderer: Renderer2,
+    private flashMessenger: FlashMessenger,
     private activatedRoute: ActivatedRoute,
     private httpService: HttpService,
     private authService: AuthService) { }
@@ -164,12 +166,21 @@ export class AccountComponent implements OnInit {
   public onAddTweet() {
     const text = this.textarea.nativeElement.value;
     if (text !== '') {
+      this.onHideModal();
+      this.showMessage();
       const textJson = JSON.stringify({status: text});
       console.log(textJson);
       this.httpService.addTweet(textJson).subscribe((res) => {
         console.log(res);
       });
     }
+  }
+
+  private showMessage() {
+    this.flashMessenger.showMessage({
+      message: 'Tweet sent to Twitter.',
+      type: 'info-message'
+    });
   }
 
   public toggleModal(action: string) {
