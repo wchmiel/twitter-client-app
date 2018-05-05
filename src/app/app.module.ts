@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
 
 import { AppComponent } from './app.component';
 
+import { GlobalErrorHandler } from './helpers/error-handler.service';
 import { HttpService } from './helpers/http.service';
 import { AuthService } from './helpers/auth.service';
 import { AccountComponent } from './account/account.component';
@@ -30,7 +31,8 @@ import { SigninComponent } from './signin/signin.component';
   providers: [
     HttpService,
     AuthService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: GlobalErrorHandler}
   ],
   bootstrap: [AppComponent]
 })

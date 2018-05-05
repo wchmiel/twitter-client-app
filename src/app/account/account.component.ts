@@ -16,7 +16,7 @@ export class AccountComponent implements OnInit {
   @ViewChild('modalCnt') modalCnt: ElementRef;
   @ViewChild('textarea') textarea: ElementRef;
 
-  public user2;
+  public tweetBtnDisabled = true;
   public userData;
   // public userData = new Promise((resolve, reject) => {
   //   setTimeout(() => {
@@ -158,14 +158,18 @@ export class AccountComponent implements OnInit {
   public onHideModal() {
     this.toggleModal('close');
     this.textarea.nativeElement.value = '';
+    this.tweetBtnDisabled = true;
   }
 
   public onAddTweet() {
     const text = this.textarea.nativeElement.value;
-    console.log(text);
-    this.httpService.addTweet(text).subscribe((res) => {
-      console.log(res);
-    });
+    if (text !== '') {
+      const textJson = JSON.stringify({status: text});
+      console.log(textJson);
+      this.httpService.addTweet(textJson).subscribe((res) => {
+        console.log(res);
+      });
+    }
   }
 
   public toggleModal(action: string) {
@@ -175,6 +179,15 @@ export class AccountComponent implements OnInit {
     } else {
       this.renderer.removeClass(this.modalCnt.nativeElement, 'open');
       this.renderer.removeClass(this.modalBg.nativeElement, 'open');
+    }
+  }
+
+  public onChangeTextarea() {
+    const value = this.textarea.nativeElement.value;
+    if (value) {
+      this.tweetBtnDisabled = false;
+    } else {
+      this.tweetBtnDisabled = true;
     }
   }
 

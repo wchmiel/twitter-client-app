@@ -255,17 +255,16 @@
   .tweet-modal-footer {
     margin-top: 15px;
     a {
+      color: $main-text-grey-color;
+      transition: 0.3s;
+      &:hover {
+        color: $twitter;
+      }
+    }
+    button {
       color: #fff;
       transition: 0.3s;
-      &:first-of-type {
-        color: $main-text-grey-color;
-        &:hover {
-          color: $twitter;
-        }
-      }
-      &:last-of-type {
-        float: right;
-      }
+      float: right;
     }
   }
 }

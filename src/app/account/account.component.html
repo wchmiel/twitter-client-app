@@ -160,15 +160,15 @@
         </span>
       </div>
       <div class="tweet-modal-cnt">
-        <textarea #textarea name="name" rows="7" cols="40" placeholder="Co się dzieje?"></textarea>
+        <textarea #textarea (keyup)="onChangeTextarea()" name="name" rows="7" cols="40" placeholder="Co się dzieje?"></textarea>
       </div>
       <div class="tweet-modal-footer">
         <a class="btn" (click)="onHideModal()">
           Anuluj
         </a>
-        <a class="btn btn-twitter" (click)="onAddTweet()">
+        <button type="button" class="btn btn-twitter" (click)="onAddTweet()" [disabled]="tweetBtnDisabled">
           Tweetnij
-        </a>
+        </button>
       </div>
     </div>
   <div>

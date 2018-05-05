@@ -36,9 +36,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log('##########################');
-    console.log(error);
-    console.log('##########################');
+    // console.log('##########################');
+    // console.log(error);
+    // console.log('##########################');
     return Observable.throw(error || 'Server Error');
   }
 
