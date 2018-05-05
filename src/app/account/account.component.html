@@ -18,7 +18,7 @@
             </div>
           </div>
           <a class="btn btn-twitter" (click)="onOpenTweetModal()">
-            Tweetnij
+            Add Tweet
           </a>
         </div>
       </div>
@@ -41,7 +41,7 @@
               </p>
               <p>
                 <a (click)="logout()" target="_blank" class="tw-link">
-                <i class="fa fa-sign-out"></i> Wyloguj
+                <i class="fa fa-sign-out"></i> Logout
                 </a>
               </p>
             </aside>
@@ -49,7 +49,7 @@
           <div class="tw-panel tw-followers-panel">
             <aside>
               <p>
-                Obserwujący
+                Followers
               </p>
               <div *ngFor="let user of (userData|async)?.followers.users">
                 <img class="avatar avatar-sm avatar-rounded"
@@ -88,7 +88,7 @@
               <footer>
                 <div class="tweets-panel-footer">
                   <span>
-                    {{ tweet.created_at }}
+                    {{ tweet.created_at | amTimeAgo }}
                   </span>
                 </div>
               </footer>
@@ -99,7 +99,7 @@
           <aside>
             <div class="tw-panel tw-friends-panel">
               <p>
-                Obserwowani
+                Friends
               </p>
               <div *ngFor="let user of (userData|async)?.friends.users">
                 <img class="avatar avatar-sm avatar-rounded"
@@ -156,18 +156,18 @@
     <div class="tw-panel">
       <div class="tweet-modal-header">
         <span>
-          Tweetnij coś
+          Add a new tweet!
         </span>
       </div>
       <div class="tweet-modal-cnt">
-        <textarea #textarea (keyup)="onChangeTextarea()" name="name" rows="7" cols="40" placeholder="Co się dzieje?"></textarea>
+        <textarea #textarea (keyup)="onChangeTextarea()" name="name" rows="7" cols="40" placeholder="What's up?"></textarea>
       </div>
       <div class="tweet-modal-footer">
         <a class="btn" (click)="onHideModal()">
-          Anuluj
+          Cancel
         </a>
         <button type="button" class="btn btn-twitter" (click)="onAddTweet()" [disabled]="tweetBtnDisabled">
-          Tweetnij
+          Add tweet
         </button>
       </div>
     </div>

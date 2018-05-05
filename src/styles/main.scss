@@ -3,15 +3,13 @@
 @import
   './abstracts/variables',
   './abstracts/mixins';
-  // 'abstracts/functions',
+
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome';
 
 // 2. Vendors
 @import
   './vendors/bootstrap';
-  // './vendors/ng-material';
-
-$fa-font-path: "~font-awesome/fonts";
-@import '~font-awesome/scss/font-awesome';
 
 // 3. Vendors extensions
 @import
@@ -23,8 +21,7 @@ $fa-font-path: "~font-awesome/fonts";
 
 // 4. Layout-related sections
 @import
-  './layout/account',
-  './layout/forms';
+  './layout/account';
 
 // 5. Components
 @import

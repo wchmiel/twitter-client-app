@@ -15,20 +15,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const token = this.authService.getToken(); // getting token from cookie
     let request = null;
-    // console.log('------------------------');
-    // console.log('token: ' + token);
-    // console.log('------------------------');
 
     if (token) {
       request = req.clone({
         headers: req.headers.set('x-auth', token)
       });
-      // console.log('copiedReq:');
-      // console.log(request);
     } else {
       request = req;
-      // console.log('request:');
-      // console.log(request);
     }
     return next.handle(request)
       .map(this.handleResponse)
@@ -36,16 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse) {
-    // console.log('##########################');
-    // console.log(error);
-    // console.log('##########################');
     return Observable.throw(error || 'Server Error');
   }
 
   private handleResponse(res) {
-    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-    // console.log(res);
-    // console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     return res;
   }
 }

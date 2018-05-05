@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'angular2-moment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './helpers/auth.interceptor';
 
@@ -28,6 +29,7 @@ import { FlashMessengerComponent } from './flash-messenger/flash-messenger.compo
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MomentModule,
     AppRoutingModule, // the main routing module
     NgbModule.forRoot()
   ],

@@ -149,16 +149,10 @@ app.post('/add/tweet', authenticate, (req, res) => {
     // res.header('x-auth', req.token).send(response);
     res.send(response);
   }).catch((err) => {
-
-    // 2) ZROBIC ERROR HANDLERA W ANGULARZE który po przechwyceniu errora wywowła z odpowiedniego serwisu flashmessengera i pokaże blad jaki wysąpił
     const message = err.message.substring(6);
     const json = JSON.parse(message);
-    console.log(err.message);
-    console.log(json);
     res.status(400).send(json);
   });
-  // console.log(req.body.status);
-  // res.json('okokokokokoko dodano!');
 });
 
 app.get('/user/show', authenticate, (req, res) => {

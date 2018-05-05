@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class HttpService {
@@ -14,9 +11,9 @@ export class HttpService {
       'Content-Type': 'application/json'
     });
     const res = this.http.get<any>('http://127.0.0.1:3000/twitter/login', {headers: headers});
-    res.subscribe(data => {
-      console.log(data);
-    });
+    // res.subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
   public isUserAuthenticated() {

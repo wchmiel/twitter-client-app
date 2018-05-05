@@ -8,13 +8,15 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private flashMessenger: FlashMessenger) {}
 
   handleError(err) {
-    console.log('----------- mam errora----------');
-    console.log(err);
-    console.log('----------- mam errora----------');
-    this.flashMessenger.showMessage({
-      message: err.error.errors[0].message,
-      type: 'error-message'
-    });
+    if (err.error !== undefined) {
+      this.flashMessenger.showMessage({
+        message: err.error.errors[0].message,
+        type: 'error-message'
+      });
+    } else {
+      console.log(err);
+      throw Error;
+    }
   }
 
 }

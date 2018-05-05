@@ -226,7 +226,6 @@
 
   .tweet-modal-header {
     padding-bottom: 15px;
-    // border-bottom: 1px solid $text-devider-color;
     position: relative;
     text-align: center;
     font-size: 1.2rem;
@@ -245,6 +244,13 @@
       color: $main-text-grey-color;
       border: none;
       padding: 5px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 75vw;
+      @media all and (min-width: 500px) {
+        width: 100%;
+      }
 
       &:focus {
         outline: none;
