@@ -95,7 +95,6 @@ app.use('/auth/twitter/callback', function(req, res) {
 app.post('/add/tweet', authenticate, (req, res) => {
   const status = req.body.status;
   addTweet(req.user, status).then((response) => {
-    // res.header('x-auth', req.token).send(response);
     res.send(response);
   }).catch((err) => {
     const message = err.message.substring(6);

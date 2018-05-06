@@ -19,13 +19,6 @@ export class AccountComponent implements OnInit {
 
   public tweetBtnDisabled = true;
   public userData;
-  // public userData = new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     this.hideSpinner();
-  //     this.showContent();
-  //     resolve(this.userMock);
-  //   }, 200);
-  // });
 
   constructor(private router: Router,
     private renderer: Renderer2,

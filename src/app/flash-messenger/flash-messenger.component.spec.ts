@@ -6,13 +6,6 @@ describe('FlashMessengerComponent', () => {
   let component: FlashMessengerComponent;
   let fixture: ComponentFixture<FlashMessengerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FlashMessengerComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
     fixture = TestBed.createComponent(FlashMessengerComponent);
     component = fixture.componentInstance;

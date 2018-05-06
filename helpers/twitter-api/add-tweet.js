@@ -10,7 +10,6 @@ const addTweet = function(authData, status) {
 
     const options_status_update = {
       method: 'POST',
-      // uri: 'https://api.twitter.com/1.1/statuses/update.json' + '?' + qs.stringify({status: 'test test.'}),
       uri: 'https://api.twitter.com/1.1/statuses/update.json',
       oauth: {
         consumer_key: TwitterConfig.consumer_key,

@@ -11,9 +11,6 @@ export class HttpService {
       'Content-Type': 'application/json'
     });
     const res = this.http.get<any>('http://127.0.0.1:3000/twitter/login', {headers: headers});
-    // res.subscribe(data => {
-    //   console.log(data);
-    // });
   }
 
   public isUserAuthenticated() {
