@@ -9,7 +9,8 @@ import 'rxjs/add/observable/throw';
 // INTERCEPTOR WITH TOKEN AND ERROR HANDLER
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor (private httpService: HttpService, private authService: AuthService) {}
+  constructor (private httpService: HttpService,
+    private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -25,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(request)
       .map(this.handleResponse)
-      .catch(this.handleError);
+      .catch(this.handleError.bind(this));
   }
 
   private handleError(error: HttpErrorResponse) {

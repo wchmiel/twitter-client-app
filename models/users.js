@@ -5,11 +5,6 @@ const mongoose = require('mongoose'),
       Config = require('../data/config');
 
 const UserSchema = mongoose.Schema({
-   // tw_id: {
-   //   type: String,
-   //   required: true,
-   //   unique: true
-   // },
    tw_id_str: {
      type: String,
      required: true,
@@ -29,12 +24,6 @@ const UserSchema = mongoose.Schema({
      required: true,
      unique: true
    },
-   // tokens: [{
-   //   token: {
-   //     type: String,
-   //     required: true
-   //   }
-   // }]
    token: {
      type: String
    }
@@ -44,7 +33,7 @@ UserSchema.methods.generateAuthToken = function() {
   const user = this;
   const token = jwt.sign(
     {
-      exp: Math.floor(Date.now() / 1000) + (60 * 60), // token set to 1 hour
+      exp: Math.floor(Date.now() / 1000) + (24 * 60), // token set to 24 minutes
       _id: user._id.toHexString()
     },
     Config.jwt_secret

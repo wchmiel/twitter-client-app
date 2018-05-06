@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +8,7 @@ export class AuthService {
   private userData = null;
   public userStored = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   public setUserData(user) {
     this.userData = user;
@@ -48,12 +48,8 @@ export class AuthService {
   }
 
   public logout() {
-    const removeToken = this.removeToken();
-    if (removeToken) {
-      this.router.navigate(['/signin']);
-    } else {
-      return false;
-    }
+    this.removeToken();
+    this.router.navigate(['/signin']);
   }
 
 }

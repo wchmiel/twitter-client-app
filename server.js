@@ -10,12 +10,10 @@ const express = require('express'),
       qs = require('querystring'),
       path = require('path'),
       jwt = require('jsonwebtoken');
-      // CircularJSON = require('circular-json'),
-      // session = require("express-session"),
-      // passport = require("passport"),
-      // TwitterStrategy = require("passport-twitter").Strategy,
 
 const saveUser = require('./helpers/db/save-user'),
+      getAccessToken = require('./helpers/twitter-api/get-access-token'),
+      getRequestToken = require('./helpers/twitter-api/get-request-token'),
       addTweet = require('./helpers/twitter-api/add-tweet'),
       getUserDataFromTwitter = require('./helpers/twitter-api/get-user'),
       getFollowersList = require('./helpers/twitter-api/get-followers-list'),
@@ -47,52 +45,11 @@ app.engine('html', require('ejs').renderFile);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// passport.use(new TwitterStrategy({
-//     consumerKey: 'rddZzwLVJB7Ca4m9WPhjXoE5b',
-//     consumerSecret: '0tOsN3Wa6scUDYCBdjl8cGfaS5FY8PJC0JKGBGfyacdWPvbaWM',
-//     callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
-//   },
-//   function(token, tokenSecret, profile, cb) {
-//     // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-//     //   return cb(err, user);
-//     // });
-//     console.log(token);
-//     console.log(profile);
-//     return cb(null, profile);
-//
-//     // done(null, profile);
-//   }
-// ));
-//
-// passport.serializeUser(function(user, callback) {
-//   callback(null, user);
-// });
-//
-// passport.deserializeUser(function(obj, callback) {
-//   callback(null, obj);
-// });
-
-// app.use(session({
-//   secret: 'My twitter app secret',
-//   resave: true,
-//   saveUninitialized: true
-// }));
-//
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-
-// REUEST METHOD //
-
 let req_data;
 
 app.get('/twitter/login', (req, res) => {
-  const options_req_token = {
-    uri: 'https://api.twitter.com/oauth/request_token',
-    oauth: TwitterConfig
-  };
 
-  rp(options_req_token).then((body) => {
+  getRequestToken().then((body) => {
     req_data = qs.parse(body);
     const url_authenticate =
       'https://api.twitter.com/oauth/authenticate' + '?' + qs.stringify({oauth_token: req_data.oauth_token});
@@ -110,18 +67,11 @@ app.use('/auth/twitter/callback', function(req, res) {
 
   if (oauth_token === req_data.oauth_token) {
 
-    const options_access_token = {
-      uri: 'https://api.twitter.com/oauth/access_token',
-      oauth: {
-        consumer_key: TwitterConfig.consumer_key,
-        consumer_secret: TwitterConfig.consumer_secret,
-        token: oauth_token,
-        token_secret: req_data.oauth_token_secret,
-        verifier: oauth_verifier
-      }
-    };
-
-    rp(options_access_token).then((body) => {
+    getAccessToken({
+      oauth_token: oauth_token,
+      oauth_token_secret: req_data.oauth_token_secret,
+      oauth_verifier: oauth_verifier
+    }).then((body) => {
 
       const authenticate_data = qs.parse(body);
       saveUser(authenticate_data).then((savedUser) => {
@@ -136,12 +86,11 @@ app.use('/auth/twitter/callback', function(req, res) {
       res.status(400).send();
     });
 
+
   } else {
     res.status(400).send();
   }
 });
-
-
 
 app.post('/add/tweet', authenticate, (req, res) => {
   const status = req.body.status;
@@ -162,14 +111,7 @@ app.get('/user/show', authenticate, (req, res) => {
     getFriendsList(req.user),
     getUserTimeline(req.user, 10)])
     .then((data) => {
-      console.log(data);
       res.send({
-        user: data[0],
-        followers: data[1],
-        friends: data[2],
-        tweets: data[3]
-      });
-      console.log({
         user: data[0],
         followers: data[1],
         friends: data[2],
@@ -189,11 +131,12 @@ app.get('/check/authentication', authenticate, (req, res) => {
 });
 
 app.get('/*', (req, res, next) => {
-  console.log('tutaj');
   res.render('index.html');
-  // res.sendFile(path.normalize(path.join(__dirname + '/../client/dist/index.html')));
 });
+
 
 app.listen(3000, () => {
   console.log('Twitter client app listening on port 3000');
 });
+
+module.exports.app = app;

@@ -13,7 +13,7 @@ const authenticate = (req, res, next) => {
     next();
   }).catch((err) => {
     // console.log(err);
-    console.log('User is unauthorized!');
+    // console.log('User is unauthorized!');
     // res.status(401).send(err.name);
     res.send({
       authorized: false,

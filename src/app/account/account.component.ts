@@ -91,17 +91,25 @@ export class AccountComponent implements OnInit {
       const textJson = JSON.stringify({status: text});
       this.httpService.addTweet(textJson).subscribe((res) => {
 
-        this.httpService.getUserData().subscribe((data) => {
-          this.authService.setUserData(data);
-          this.userData = new Promise((resolve, reject) => {
-            resolve(data);
+        if (res.authorized !== undefined && !res.authorized) {
+          this.logout();
+          this.showMessage({
+            message: 'You are unauthorized.',
+            type: 'error-message'
           });
-        });
+        } else {
+          this.httpService.getUserData().subscribe((data) => {
+            this.authService.setUserData(data);
+            this.userData = new Promise((resolve, reject) => {
+              resolve(data);
+            });
+          });
 
-        this.showMessage({
-          message: 'Tweet added successfully.',
-          type: 'success-message'
-        });
+          this.showMessage({
+            message: 'Tweet added successfully.',
+            type: 'success-message'
+          });
+        }
 
       });
     }

@@ -27,9 +27,6 @@ export class FlashMessengerComponent implements OnInit {
     this.setAnimationListeners();
 
     this.flashMessenger.showFlashMessage.subscribe((value: FlashMessage) => {
-      console.log('########## flash ##########');
-      console.log(value);
-      console.log('########## flash ##########');
 
       if (value.message !== '' && value.type !== '') {
         this.messageToShow = value;
