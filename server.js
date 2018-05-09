@@ -19,12 +19,12 @@ const saveUser = require('./helpers/db/save-user'),
       getFollowersList = require('./helpers/twitter-api/get-followers-list'),
       getFriendsList = require('./helpers/twitter-api/get-friends-list'),
       getUserTimeline = require('./helpers/twitter-api/get-user-timeline'),
-      TwitterConfig = require('./data/twitter-config'),
       authenticate = require('./helpers/middlewares/authenticate'),
       User = require('./models/users');
 
 
-mongoose.connect("mongodb://localhost/tw_app_test");
+const dbUrl = process.env.DATABASE || "mongodb://localhost/tw_app_test";
+mongoose.connect(dbUrl);
 
 // CORS middleware
 app.use(function(req, res, next) {
@@ -134,8 +134,8 @@ app.get('/*', (req, res, next) => {
 });
 
 
-app.listen(3000, () => {
-  console.log('Twitter client app listening on port 3000');
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Twitter client app listening on port ' + (process.env.PORT || 3000));
 });
 
 module.exports.app = app;

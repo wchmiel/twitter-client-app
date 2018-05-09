@@ -4,20 +4,23 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build --prod aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "mocha-test": "mocha server-tests/*.test.js",
-    "mocha-test-watch": "nodemon --exec \"npm run mocha-test\""
+    "mocha-test-watch": "nodemon --exec \"npm run mocha-test\"",
+    "postinstall": "ng build --prod --aot"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
+    "@angular/compiler-cli": "^5.2.0",
     "@angular/core": "^5.2.0",
+    "@angular/cli": "1.6.8",
     "@angular/forms": "^5.2.0",
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
@@ -35,11 +38,10 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "rxjs": "^5.5.6",
+    "typescript": "~2.5.3",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.8",
-    "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
@@ -59,7 +61,6 @@
     "supertest": "^3.0.0",
     "tap": "^11.1.4",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "tslint": "~5.9.1"
   }
 }

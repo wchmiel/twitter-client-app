@@ -43,5 +43,4 @@ testem.log
 Thumbs.db
 
 # Twitter credentials
-/data/twitter-config.js
-/data/config.js
+/data/secret/*

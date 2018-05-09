@@ -3,7 +3,7 @@
 const request = require('request'),
       rp = require('request-promise'),
       qs = require('querystring'),
-      TwitterConfig = require('../../data/twitter-config');
+      TwitterConfig = require('../../data/prod/twitter-config');
 
 
 const getUserDataFromTwitter = function(authData) {

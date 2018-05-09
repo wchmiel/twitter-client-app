@@ -1,5 +1,4 @@
-class UserDataMock {
-  public userMock = {
+export const userMock = {
     followers: {
       users: [
         {
@@ -77,4 +76,3 @@ class UserDataMock {
       profile_image_url: 'http://pbs.twimg.com/profile_images/992105692214513664/7TvaKnwn.jpg',
     }
   };
-}

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../helpers/http.service';
 import { AuthService } from '../helpers/auth.service';
 import { FlashMessenger, FlashMessage } from '../flash-messenger/flash-messenger.service';
+import { userMock } from '../helpers/user-mock.model';
 
 @Component({
   selector: 'app-account',
@@ -31,6 +32,12 @@ export class AccountComponent implements OnInit {
     if (this.activatedRoute.snapshot.queryParams.oauth_verifier) {
       this.router.navigate(['']);
     }
+
+    // this.userData = new Promise((resolve, reject) => {
+    //   this.hideSpinner();
+    //   this.showContent();
+    //   resolve(userMock);
+    // });
 
     if (this.authService.userStored) {
       this.userData = new Promise((resolve, reject) => {

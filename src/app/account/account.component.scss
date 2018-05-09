@@ -137,6 +137,7 @@
 .main-header {
   padding: 5px 0px;
   background-color: $panel-main-bg-color;
+  border-top: 1px solid $text-devider-color;
   .header-panel {
     .header-logo {
       display: inline-block;
@@ -147,6 +148,7 @@
       }
       div:last-of-type {
         padding-top: 3px;
+        color: #FF5A00;
       }
     }
 
@@ -162,6 +164,7 @@
   margin-top: 30px;
   padding: 10px 0px;
   background-color: $panel-main-bg-color;
+  border-top: 1px solid $text-devider-color;
 
   .footer-panel {
     position: relative;
@@ -240,9 +243,9 @@
 
   .tweet-modal-cnt {
     textarea {
-      background-color: $form-main-background-color;
+      background-color: $main-background-color;
       color: $main-text-grey-color;
-      border: none;
+      border: 1px solid $text-devider-color;
       padding: 5px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;

@@ -40,7 +40,6 @@ Aplikacja składa się z dwóch widoków:
 - modal z formularzem do dodawania tweetów
 - flash-messenger do wyświetlania informacji dla użytkownika
 
-Ze względu na ograniczony czas nie napisano autmoatycznych testów apliakcji klienckiej.
 
 ## Opis procesu uruchamiania aplikacji
 

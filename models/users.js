@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose'),
       jwt = require('jsonwebtoken'),
-      Config = require('../data/config');
+      Config = require('../data/prod/config');
 
 const UserSchema = mongoose.Schema({
    tw_id_str: {
