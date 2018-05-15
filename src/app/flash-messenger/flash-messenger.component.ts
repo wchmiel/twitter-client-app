@@ -27,13 +27,15 @@ export class FlashMessengerComponent implements OnInit {
     this.setAnimationListeners();
 
     this.flashMessenger.showFlashMessage.subscribe((value: FlashMessage) => {
-
-      if (value.message !== '' && value.type !== '') {
-        this.messageToShow = value;
-        this.onShowNewMessage();
-      }
-
+      this.showNewMessage(value);
     });
+  }
+
+  public showNewMessage(value: FlashMessage) {
+    if (value.message !== '' && value.type !== '') {
+      this.messageToShow = value;
+      this.onShowNewMessage();
+    }
   }
 
   private onShowNewMessage() {

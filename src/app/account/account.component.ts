@@ -33,29 +33,29 @@ export class AccountComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    // this.userData = new Promise((resolve, reject) => {
-    //   this.hideSpinner();
-    //   this.showContent();
-    //   resolve(userMock);
-    // });
+    this.userData = new Promise((resolve, reject) => {
+      this.hideSpinner();
+      this.showContent();
+      resolve(userMock);
+    });
 
-    if (this.authService.userStored) {
-      this.userData = new Promise((resolve, reject) => {
-        const data = this.authService.getUserData;
-        this.hideSpinner();
-        this.showContent();
-        resolve(data);
-      });
-    } else {
-      this.userData = new Promise((resolve, reject) => {
-        this.httpService.getUserData().subscribe((data) => {
-          this.authService.setUserData(data);
-          this.hideSpinner();
-          this.showContent();
-          resolve(data);
-        });
-      });
-    }
+    // if (this.authService.userStored) {
+    //   this.userData = new Promise((resolve, reject) => {
+    //     const data = this.authService.getUserData;
+    //     this.hideSpinner();
+    //     this.showContent();
+    //     resolve(data);
+    //   });
+    // } else {
+    //   this.userData = new Promise((resolve, reject) => {
+    //     this.httpService.getUserData().subscribe((data) => {
+    //       this.authService.setUserData(data);
+    //       this.hideSpinner();
+    //       this.showContent();
+    //       resolve(data);
+    //     });
+    //   });
+    // }
   }
 
   private hideSpinner() {

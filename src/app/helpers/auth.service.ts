@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -8,7 +8,7 @@ export class AuthService {
   private userData = null;
   public userStored = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   public setUserData(user) {
     this.userData = user;
