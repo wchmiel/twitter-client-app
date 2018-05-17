@@ -23,7 +23,9 @@ export class AuthService {
     const cookie_jwt = this.getJwtFromCookie();
     if (cookie_jwt) {
       localStorage.setItem(this.jwtName, cookie_jwt);
+      return true;
     }
+    return false;
   }
 
   public getJwtFromCookie() {
