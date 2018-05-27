@@ -1,0 +1,38 @@
+<div class="tw-modal-bg" (click)="onCancel()" #modalBg></div>
+<div class="tw-tweet-modal" #modalCnt>
+  <div class="container">
+    <div class="tw-panel">
+      <div class="tweet-modal-header">
+        <span>
+          {{ getModalConfig().headerCaption }}
+        </span>
+      </div>
+      <div class="tweet-modal-cnt">
+        <textarea
+          *ngIf="getModalConfig().content.textarea"
+          #textarea
+          (keyup)="onChangeTextarea()"
+          name="name"
+          rows="7"
+          cols="40"
+          placeholder="{{ getModalConfig().content.textareaPlaceholder }}"></textarea>
+        <p *ngIf="getModalConfig().content.info">
+          {{ getModalConfig().content.infoContent }}
+        </p>
+      </div>
+      <div class="tweet-modal-footer">
+        <a class="btn" (click)="onCancel()">
+          {{ getModalConfig().cancelBtnCaption }}
+        </a>
+        <button
+          *ngIf="getModalConfig().showConfirmBtn"
+          type="button"
+          class="btn btn-twitter"
+          (click)="onConfirm()"
+          [disabled]="confirmBtnDisabled">
+            {{ getModalConfig().confirmBtnCaption }}
+        </button>
+      </div>
+    </div>
+  <div>
+</div>

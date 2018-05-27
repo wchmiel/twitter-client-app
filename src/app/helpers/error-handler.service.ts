@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { FlashMessenger, FlashMessage } from '../flash-messenger/flash-messenger.service';
+import { FlashMessenger, FlashMessage } from '../global-components/flash-messenger/flash-messenger.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

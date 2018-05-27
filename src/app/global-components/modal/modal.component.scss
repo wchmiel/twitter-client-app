@@ -1,0 +1,106 @@
+@import '~styles/abstracts/variables';
+@import '~styles/abstracts/mixins';
+
+.tw-modal-bg {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  opacity: 0;
+
+  &.open {
+    display: block;
+    -webkit-animation: show-modal 0.3s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation: show-modal 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.tw-tweet-modal {
+  display: none;
+  @include centerer(true, false);
+  top: 100px;
+  z-index: 999;
+  opacity: 0;
+
+  @media all and (max-width: $SM_RES) {
+    width: 60vw;
+  }
+
+  @media all and (max-width: $XS_RES) {
+    width: 90vw;
+  }
+
+  &.open {
+    display: block;
+    -webkit-animation: show-modal 0.3s ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation: show-modal 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  .tweet-modal-header {
+    padding-bottom: 15px;
+    position: relative;
+    text-align: center;
+    font-size: 1.2rem;
+
+    .fa-times {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 1.4rem;
+    }
+  }
+
+  .tweet-modal-cnt {
+    textarea {
+      background-color: $main-background-color;
+      color: $main-text-grey-color;
+      border: 1px solid $text-devider-color;
+      padding: 5px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 72vw;
+      @media all and (min-width: 500px) {
+        width: 100%;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    p {
+      padding: 30px 15px 30px 15px;
+      text-align: center;
+    }
+  }
+
+  .tweet-modal-footer {
+    margin-top: 15px;
+    a {
+      color: $main-text-grey-color;
+      transition: 0.3s;
+      &:hover {
+        color: $twitter;
+      }
+    }
+    button {
+      color: #fff;
+      transition: 0.3s;
+      float: right;
+    }
+  }
+}
+
+@keyframes show-modal {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}

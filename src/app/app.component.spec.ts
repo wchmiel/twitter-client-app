@@ -6,6 +6,9 @@ import { AuthService } from './helpers/auth.service';
 @Component({selector: 'app-flash-messenger', template: ''})
 class FlashMessengerStubComponent {}
 
+@Component({selector: 'app-modal', template: ''})
+class ModalStubComponent {}
+
 @Component({selector: 'router-outlet', template: ''})
 class RouterOutletStubComponent { }
 
@@ -28,6 +31,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         FlashMessengerStubComponent,
+        ModalStubComponent,
         RouterOutletStubComponent
       ],
       providers: [
